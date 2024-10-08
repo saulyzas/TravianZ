@@ -11,7 +11,7 @@ foreach($spawnTimeArray as $text => $spawnTime){
 ?>
 <br /><br />
 <div>
-	<span><b><?php echo $text; ?></b> will spawn in: </span>
+	<span><b><?php echo $text; ?></b> start in: </span>
 	<span id="timer<?php echo ++$session->timer; ?>"><?php echo $generator->getTimeFormat($spawnTime); ?></span>
 </div>
 <?php }} ?>
