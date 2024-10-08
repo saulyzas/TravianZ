@@ -126,7 +126,7 @@ class Artifacts
      * @var int The base amount of Natars' spying units, used when Natars account is created
      */
      
-    NATARS_BASE_SPY = 1500,
+    NATARS_BASE_SPY = 44,
 
     /**
      * @var int the base amount of Natars' WW villages 
