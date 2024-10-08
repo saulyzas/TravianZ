@@ -44,12 +44,12 @@ SET @minUnitsForOasis0 = 0;
 SET @maxUnitsForOasis0 = 0;
 
 -- minimum and maximum number of units for oasis with "high" field set to 1
-SET @minUnitsForOasis1 = 0;
-SET @maxUnitsForOasis1 = 0;
+SET @minUnitsForOasis1 = 1;
+SET @maxUnitsForOasis1 = 1;
 
 -- minimum and maximum number of units for oasis with "high" field set to 2
-SET @minUnitsForOasis2 = 0;
-SET @maxUnitsForOasis2 = 0;
+SET @minUnitsForOasis2 = 2;
+SET @maxUnitsForOasis2 = 2;
 
 
 
