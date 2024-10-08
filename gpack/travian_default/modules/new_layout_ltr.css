@@ -65,7 +65,7 @@ div#mtop div#n5 .reports {float: left;}
 div#mtop div#n5 .messages {float: right;}
 
 
-a#logo {display: none;}
+a#logo {display:;}
 
 /* World Status Peace, Day Night */
 img.day, img.night, div.peace {left: 12px; top: -89px;}
