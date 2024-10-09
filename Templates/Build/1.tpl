@@ -8,7 +8,7 @@ include("next.tpl");
 <p class="build_desc"><?php echo B1_DESC; ?></p>
 <table cellpadding="1" cellspacing="1" id="build_value">
 	<tr>
-		<th><?php echo CUR_PROD; ?>:</th>
+		<th><?php echo CUR_PROD; ?> Level:</th>
 		<td><b><?php echo $bid1[$village->resarray['f'.$id]]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>
     <?php 
@@ -18,14 +18,14 @@ include("next.tpl");
 	if($next<=20){
     ?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo $next; ?>:</th>
+		<th><?php echo NEXT_PROD; echo $next; ?> Level:</th>
 		<td><b><?php echo $bid1[$next]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>
     <?php 
     }else{
 	?>
 	<tr>
-		<th><?php echo NEXT_PROD; 20 ?>:</th>
+		<th><?php echo NEXT_PROD; 20 ?> Level:</th>
 		<td><b><?php echo $bid1[20]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>	
 	<?php
@@ -33,14 +33,14 @@ include("next.tpl");
 	if($next<=10){
     ?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo $next; ?>:</th>
+		<th><?php echo NEXT_PROD; echo $next; ?> Level:</th>
 		<td><b><?php echo $bid1[$next]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>
     <?php 
     }else{
 	?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo 10; ?>:</th>
+		<th><?php echo NEXT_PROD; echo 10; ?> Level:</th>
 		<td><b><?php echo $bid1[10]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>	
 	<?php
