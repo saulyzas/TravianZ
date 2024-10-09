@@ -21,14 +21,14 @@ include("next.tpl");
 	if($next<=20){
     ?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo $next; ?>:</th>
+		<th><?php echo NEXT_PROD; echo $next; ?> Level:</th>
 		<td><b><?php echo $bid3[$next]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>
     <?php 
     }else{
 	?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo 20; ?>:</th>
+		<th><?php echo NEXT_PROD; echo 20; ?> Level:</th>
 		<td><b><?php echo $bid3[20]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>	
 	<?php
@@ -36,14 +36,14 @@ include("next.tpl");
 	if($next<=10){
     ?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo $next; ?>:</th>
+		<th><?php echo NEXT_PROD; echo $next; ?> Level:</th>
 		<td><b><?php echo $bid3[$next]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>
     <?php 
     }else{
 	?>
 	<tr>
-		<th><?php echo NEXT_PROD; echo 10; ?>:</th>
+		<th><?php echo NEXT_PROD; echo 10; ?> Level:</th>
 		<td><b><?php echo $bid3[10]['prod']* SPEED; ?></b> <?php echo PER_HR; ?></td>
 	</tr>	
 	<?php
