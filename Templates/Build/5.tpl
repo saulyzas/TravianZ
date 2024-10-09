@@ -19,12 +19,12 @@ include("next.tpl");
 		$next = $village->resarray['f'.$id]+1+$loopsame+$doublebuild+$master;
 		if($next<=5){
         ?>
-			<th><?php echo WOOD_BONUS_LEVEL; ?> <?php echo $next; ?>:</th>
+			<th><?php echo WOOD_BONUS_LEVEL; ?> <?php echo $next; ?> Level:</th>
 			<td><b><?php echo $bid5[$next]['attri']; ?></b> <?php echo PERCENT; ?></td>
             <?php
             }else{
         ?>
-			<th><?php echo WOOD_BONUS_LEVEL; ?> 5:</th>
+			<th><?php echo WOOD_BONUS_LEVEL; ?> 5 Level:</th>
 			<td><b><?php echo $bid5[5]['attri']; ?></b> <?php echo PERCENT; ?></td>
             <?php
 			}}
