@@ -126,7 +126,7 @@ if($session->userinfo['gold'] >= 3 && $building->getTypeLevel(17) >= 1 && $villa
         echo "<a class=\"build\" href=\"dorf2.php?a=$id&c=$session->checker\">".UPGRADE_LEVEL." ";
         }
 		echo $village->resarray['f'.$id]+1;
-		echo ".</a>";
+		echo " Level:</a>";
 		}
     else if($bindicate == 9) {
 		if($session->access==BANNED){
@@ -139,7 +139,7 @@ if($session->userinfo['gold'] >= 3 && $building->getTypeLevel(17) >= 1 && $villa
         echo "<a class=\"build\" href=\"dorf2.php?a=$id&c=$session->checker\">".UPGRADE_LEVEL." ";
         }
 		echo $village->resarray['f'.$id]+($loopsame > 0 ? 2:1);
-		echo ".</a> <span class=\"none\">".WAITING."</span> ";
+		echo " Level:</a> <span class=\"none\">".WAITING."</span> ";
     }
 }
 
