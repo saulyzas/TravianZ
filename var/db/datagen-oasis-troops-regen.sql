@@ -40,16 +40,16 @@ SET @noVillage = ((SELECT id FROM %PREFIX%oids LIMIT 1) = -1);
 SET @firstVillage = (SELECT id FROM %PREFIX%oids LIMIT 1);
 
 -- minimum and maximum number of units for oasis with "high" field set to 0
-SET @minUnitsForOasis0 = 1;
-SET @maxUnitsForOasis0 = 1;
+SET @minUnitsForOasis0 = 5;
+SET @maxUnitsForOasis0 = 10;
 
 -- minimum and maximum number of units for oasis with "high" field set to 1
-SET @minUnitsForOasis1 = 1;
-SET @maxUnitsForOasis1 = 1;
+SET @minUnitsForOasis1 = 0;
+SET @maxUnitsForOasis1 = 0;
 
 -- minimum and maximum number of units for oasis with "high" field set to 2
-SET @minUnitsForOasis2 = 1;
-SET @maxUnitsForOasis2 = 1;
+SET @minUnitsForOasis2 = 0;
+SET @maxUnitsForOasis2 = 0;
 
 
 
@@ -109,9 +109,9 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u.u35 = u.u35 + (FLOOR(2 + RAND() * 3)),
-        u36 = u36 + (FLOOR(1 + RAND() * 2)),
-        u37 = u37 + (FLOOR(1 + RAND() * 1))
+        u.u35 = u.u35 + (FLOOR(3 + RAND() * 2)),
+        u36 = u36 + (FLOOR(5 + RAND() * 2)),
+        u37 = u37 + (FLOOR(2 + RAND() * 2))
     WHERE
         (
             (
@@ -121,7 +121,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(1,2)
                 )
@@ -163,11 +163,11 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u35 = u35 + (FLOOR(5 + RAND() * 3)),
+        u35 = u35 + (FLOOR(2 + RAND() * 2)),
         u36 = u36 + (FLOOR(1 + RAND() * 2)),
-        u37 = u37 + (FLOOR(1 + RAND() * 4)),
-        u38 = u38 + (FLOOR(1 + RAND() * 1)),
-        u40 = u40 + (FLOOR(1 + RAND() * 3))
+        u37 = u37 + (FLOOR(0 + RAND() * 2)),
+        u38 = u38 + (FLOOR(0 + RAND() * 2))
+        
     WHERE
         (
             (
@@ -177,7 +177,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(3)
                 )
@@ -211,6 +211,14 @@ UPDATE %PREFIX%units u
                     WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
                     WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
                 END
+				
+				 )
+            OR u35 <= (
+                CASE o.high
+                    WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
+                    WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
+                    WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
+                END
             )
         );
 
@@ -219,9 +227,9 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 5)),
-        u32 = u32 + (FLOOR(1 + RAND() * 4)),
-        u35 = u35 + (FLOOR(1 + RAND() * 1))
+        u31 = u31 + (FLOOR(5 + RAND() * 2)),
+        u32 = u32 + (FLOOR(2 + RAND() * 2)),
+        u35 = u35 + (FLOOR(3 + RAND() * 2))
     WHERE
         (
             (
@@ -231,7 +239,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(4,5)
                 )
@@ -270,10 +278,10 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 2)),
-        u32 = u32 + (FLOOR(1 + RAND() * 5)),
-        u35 = u35 + (FLOOR(1 + RAND() * 3)),
-        u40 = u40 + (FLOOR(1 + RAND() * 1))
+        u31 = u31 + (FLOOR(5 + RAND() * 2)),
+        u32 = u32 + (FLOOR(9 + RAND() * 2)),
+        u35 = u35 + (FLOOR(0 + RAND() * 2)),
+        u38 = u38 + (FLOOR(0 + RAND() * 2))
     WHERE
         (
             (
@@ -283,7 +291,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(6)
                 )
@@ -315,6 +323,16 @@ UPDATE %PREFIX%units u
                 WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
                 WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
             END
+			
+			 )
+        AND u38 <= (
+            CASE o.high
+                WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
+                WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
+                WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
+            END
+			
+			
         );
 
 -- +25% iron oasis
@@ -322,9 +340,9 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 1)),
-        u32 = u32 + (FLOOR(1 + RAND() * 6)),
-        u34 = u34 + (FLOOR(1 + RAND() * 2))
+        u31 = u31 + (FLOOR(1 + RAND() * 2)),
+        u32 = u32 + (FLOOR(3 + RAND() * 2)),
+        u34 = u34 + (FLOOR(2 + RAND() * 2))
     WHERE
         (
             (
@@ -334,7 +352,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(7,8)
                 )
@@ -373,10 +391,10 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 5)),
-        u32 = u32 + (FLOOR(1 + RAND() * 4)),
-        u34 = u34 + (FLOOR(1 + RAND() * 2)),
-        u39 = u39 + (FLOOR(1 + RAND() * 1))
+        u31 = u31 + (FLOOR(3 + RAND() * 2)),
+        u32 = u32 + (FLOOR(1 + RAND() * 2)),
+        u34 = u34 + (FLOOR(0 + RAND() * 2)),
+        u37 = u37 + (FLOOR(0 + RAND() *2))
     WHERE
         (
             (
@@ -386,7 +404,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(9)
                 )
@@ -418,6 +436,14 @@ UPDATE %PREFIX%units u
                 WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
                 WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
             END
+			
+			)
+        AND u37 <= (
+            CASE o.high
+                WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
+                WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
+                WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
+            END
         );
 
 -- +25% crop oasis
@@ -425,11 +451,10 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 1)),
-        u33 = u33 + (FLOOR(1 + RAND() * 2)),
-        u37 = u37 + (FLOOR(1 + RAND() * 4)),
-        u38 = u38 + (FLOOR(1 + RAND() * 3)),
-        u39 = u39 + (FLOOR(1 + RAND() * 1))
+        u31 = u31 + (FLOOR(3 + RAND() * 2)),
+        u33 = u33 + (FLOOR(4 + RAND() * 2)),
+        u37 = u37 + (FLOOR(0 + RAND() * 2)),
+        u39 = u39 + (FLOOR(0 + RAND() * 2))
     WHERE
         (
             (
@@ -439,7 +464,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(10,11)
                 )
@@ -472,7 +497,7 @@ UPDATE %PREFIX%units u
                 WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
             END
         )
-        AND u38 <= (
+        AND u39 <= (
             CASE o.high
                 WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
                 WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
@@ -485,12 +510,11 @@ UPDATE %PREFIX%units u
     JOIN %PREFIX%odata o
     ON u.vref = o.wref
     SET
-        u31 = u31 + (FLOOR(1 + RAND() * 1)),
-        u33 = u33 + (FLOOR(1 + RAND() * 5)),
-        u37 = u37 + (FLOOR(1 + RAND() * 3)),
-        u38 = u38 + (FLOOR(1 + RAND() * 2)),
-        u39 = u39 + (FLOOR(1 + RAND() * 4)),
-        u40 = u40 + (FLOOR(1 + RAND() * 1))
+        u31 = u31 + (FLOOR(2 + RAND() * 5)),
+        u33 = u33 + (FLOOR(4 + RAND() * 2)),
+        u38 = u38 + (FLOOR(0 + RAND() * 1)),
+        u39 = u39 + (FLOOR(0 + RAND() * 4)),
+        u40 = u40 + (FLOOR(0 + RAND() * 3))
     WHERE
         (
             (
@@ -500,7 +524,7 @@ UPDATE %PREFIX%units u
                         SELECT
                             id
                         FROM
-                            s1_wdata
+                            %PREFIX%wdata
                         WHERE
                             oasistype IN(12)
                 )
@@ -525,13 +549,7 @@ UPDATE %PREFIX%units u
                 WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
                 WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
             END
-        )
-        AND u37 <= (
-            CASE o.high
-                WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
-                WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
-                WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
-            END
+       
         )
         AND u38 <= (
             CASE o.high
@@ -546,4 +564,13 @@ UPDATE %PREFIX%units u
                 WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
                 WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
             END
+			
+			)
+        AND u40 <= (
+            CASE o.high
+                WHEN 0 THEN (FLOOR(@minUnitsForOasis0 + RAND() * @maxUnitsForOasis0))
+                WHEN 1 THEN (FLOOR(@minUnitsForOasis1 + RAND() * @maxUnitsForOasis1))
+                WHEN 2 THEN (FLOOR(@minUnitsForOasis2 + RAND() * @maxUnitsForOasis2))
+            END
+        
         );
